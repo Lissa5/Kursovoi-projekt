@@ -44,32 +44,33 @@ Q(x) = 7x + 41, если x >= 30.
 ## 2. Реализация программы
 
 ```cpp
-#include <iostream>
+#include <stdio.h>
 #include <locale.h>
-using namespace std;
 
-int main()
+task1()
 {
     setlocale(LC_ALL, "RUS");
     int n;
-    double x[100], q[100];
-    double sum = 0, mean, median, temp;
+    float x[100];
+    float q[100];
+    float sum = 0;
+    float mean, median, temp, fraction;
     int count = 0;
-    double fraction;
+    int i, j;
 
-    cout << "Введите количество измерений: ";
-    cin >> n;
+    printf("Введите количество измерений: ");
+    scanf("%d", &n);
 
     if (n <= 0 || n > 100)
     {
-        cout << "Ошибка!" << endl;
+        printf("Ошибка!\n");
         return 0;
     }
 
-    for (int i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
-        cout << "Введите концентрацию: ";
-        cin >> x[i];
+        printf("Введите концентрацию x[%d]: ", i + 1);
+        scanf("%f", &x[i]);
 
         if (x[i] < 10)
         {
@@ -88,15 +89,15 @@ int main()
 
         if (q[i] > 60)
         {
-            count++;
+            count = count + 1;
         }
     }
 
     mean = sum / n;
 
-    for (int i = 0; i < n - 1; i++)
+    for (i = 0; i < n - 1; i++)
     {
-        for (int j = 0; j < n - 1 - i; j++)
+        for (j = 0; j < n - 1 - i; j++)
         {
             if (q[j] > q[j + 1])
             {
@@ -116,12 +117,18 @@ int main()
         median = (q[n / 2 - 1] + q[n / 2]) / 2;
     }
 
-    fraction = (double)count / n;
+    fraction = (float)count / n;
 
-    cout << "Среднее значение: " << mean << endl;
-    cout << "Медиана: " << median << endl;
-    cout << "Количество значений выше UCL: " << count << endl;
-    cout << "Доля значений выше UCL: " << fraction << endl;
+    printf("Среднее значение: %f\n", mean);
+    printf("Медиана: %f\n", median);
+    printf("Количество значений выше UCL: %d\n", count);
+    printf("Доля значений выше UCL: %f\n", fraction);
 
+    return 0;
+}
+
+int main()
+{
+    task1();
     return 0;
 }
