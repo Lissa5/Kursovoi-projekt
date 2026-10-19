@@ -45,10 +45,12 @@ Q(x) = 7x + 41, если x >= 30.
 
 ```cpp
 #include <iostream>
+#include <locale.h>
 using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL, "RUS");
     int n;
     double x[100], q[100];
     double sum = 0, mean, median, temp;
